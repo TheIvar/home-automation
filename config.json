@@ -1,0 +1,636 @@
+{
+  "settings": {
+    "debug": true,
+    "logLevel": "debug",
+    "httpServer": {
+      "enabled": true,
+      "port": 80
+    },
+    "database": {
+      "deviceAttributeLogging": [
+        {
+          "deviceId": "*",
+          "attributeName": "*",
+          "type": "*",
+          "interval": "0",
+          "expire": "7d"
+        },
+        {
+          "deviceId": "*",
+          "attributeName": "*",
+          "type": "continuous",
+          "interval": "5min",
+          "expire": "7d"
+        },
+        {
+          "deviceId": "*",
+          "attributeName": "temperature",
+          "type": "number",
+          "expire": "1y"
+        },
+        {
+          "deviceId": "*",
+          "attributeName": "humidity",
+          "type": "number",
+          "expire": "1y"
+        }
+      ],
+      "messageLogging": [
+        {
+          "level": "*",
+          "tags": [],
+          "expire": "7d"
+        },
+        {
+          "level": "debug",
+          "tags": [],
+          "expire": "0"
+        }
+      ]
+    },
+    "authentication": {
+      "secret": "####"
+    },
+    "httpsServer": {},
+    "gui": {}
+  },
+  "plugins": [
+    {
+      "plugin": "cron"
+    },
+    {
+      "plugin": "mobile-frontend",
+      "theme": "graphite/water",
+      "mode": "production",
+      "customTitle": "Dashboard"
+    },
+    {
+      "plugin": "openweather",
+      "apiKey": "####"
+    },
+    {
+      "plugin": "gpio"
+    },
+    {
+      "plugin": "homeduino",
+      "driver": "serialport",
+      "driverOptions": {
+        "serialDevice": "/dev/ttyACM0",
+        "baudrate": 115200
+      },
+      "receiverPin": 0,
+      "transmitterPin": 4
+    },
+    {
+      "plugin": "sysinfo"
+    },
+    {
+      "plugin": "filebrowser",
+      "mappings": [
+        {
+          "path": "/files",
+          "directory": "/"
+        }
+      ]
+    },
+    {
+      "plugin": "ping"
+    },
+    {
+      "plugin": "shell-execute"
+    }
+  ],
+  "devices": [
+    {
+      "id": "weather",
+      "class": "OpenWeatherDevice",
+      "name": "Weer vandaag",
+      "location": "####, Netherlands",
+      "lang": "nl",
+      "units": "metric",
+      "timeout": 900000
+    },
+    {
+      "id": "forecast",
+      "class": "OpenWeatherForecastDevice",
+      "name": "Weer morgen",
+      "location": "####, Netherlands",
+      "units": "metric",
+      "lang": "nl",
+      "timeout": 900000,
+      "day": 1
+    },
+    {
+      "id": "rfswitch4",
+      "name": "Alles aan / uit",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 0
+          },
+          "send": true,
+          "receive": true
+        },
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 1
+          },
+          "send": true,
+          "receive": true
+        },
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 2
+          },
+          "send": true,
+          "receive": true
+        },
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 0
+          },
+          "send": true,
+          "receive": true
+        },
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 1
+          },
+          "send": true,
+          "receive": true
+        },
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 2
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch1",
+      "name": "Lamp links naast TV",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 0
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch2",
+      "name": "BoogLamp",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 1
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch3",
+      "name": "Lamp Hal",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 2
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch5",
+      "name": "Reserve 1",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 0
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch6",
+      "name": "Reserve 2",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 1
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "rfswitch7",
+      "name": "Reserve 3",
+      "class": "HomeduinoRFSwitch",
+      "protocols": [
+        {
+          "name": "switch1",
+          "options": {
+            "id": ####,
+            "unit": 2
+          },
+          "send": true,
+          "receive": true
+        }
+      ]
+    },
+    {
+      "id": "syssensor",
+      "class": "SystemSensor",
+      "name": "Systeem",
+      "attributes": [
+        {
+          "name": "cpu"
+        },
+        {
+          "name": "memory"
+        },
+        {
+          "name": "temperature",
+          "interval": 5000
+        }
+      ]
+    },
+    {
+      "id": "temperatuursensor1",
+      "name": "temeratuur hal",
+      "class": "HomeduinoRFTemperature",
+      "protocols": [
+        {
+          "name": "weather13",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": "smartphone-ivar",
+      "name": "Telefoon Ivar",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "smartphone-dion",
+      "name": "Telefoon Dion",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "smartphone-carla",
+      "name": "Telefoon Carla",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "ap-kantoor",
+      "name": "Access Point Kantoor",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "ap-zolder",
+      "name": "Access Point Zolder",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "raspberrypi-ivar",
+      "name": "Raspberry Pi Ivar",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "ipcamera-voordeur",
+      "name": "IP-Camera",
+      "class": "PingPresence",
+      "host": "####",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "linux-lt-ivar",
+      "name": "Linux-laptop Ivar",
+      "class": "PingPresence",
+      "host": "ivar-linux",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "pc-meterkast",
+      "name": "PC-Meterkast",
+      "class": "PingPresence",
+      "host": "PC-Meterkast",
+      "interval": 15000,
+      "retries": 5
+    },
+    {
+      "id": "sys-buttons",
+      "name": "Systeem commands",
+      "class": "ButtonsDevice",
+      "buttons": [
+        {
+          "id": "button-reboot",
+          "text": "System Reboot"
+        },
+        {
+          "id": "button-shutdown",
+          "text": "System Shutdown"
+        },
+        {
+          "id": "button-pimatic-restart",
+          "text": "Pimatic restart"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "system-reboot",
+      "name": "System reboot",
+      "rule": "if button-reboot is pressed then execute \"sudo shutdown -r 0\"",
+      "active": true,
+      "logging": true
+    },
+    {
+      "id": "system-shutdown",
+      "name": "System shutdown",
+      "rule": "if button-shutdown is pressed then execute \"sudo shutdown now\"",
+      "active": true,
+      "logging": true
+    },
+    {
+      "id": "system-pimatic-restart",
+      "name": "System Pimatic restart",
+      "rule": "if button-pimatic-restart is pressed then execute \"sudo service pimatic restart\"",
+      "active": true,
+      "logging": true
+    }
+  ],
+  "pages": [
+    {
+      "id": "page-homepage",
+      "name": "Schakelaars",
+      "devices": [
+        {
+          "deviceId": "rfswitch1"
+        },
+        {
+          "deviceId": "rfswitch2"
+        },
+        {
+          "deviceId": "rfswitch3"
+        },
+        {
+          "deviceId": "rfswitch4"
+        },
+        {
+          "deviceId": "rfswitch5"
+        },
+        {
+          "deviceId": "rfswitch6"
+        },
+        {
+          "deviceId": "rfswitch7"
+        }
+      ]
+    },
+    {
+      "id": "page-overig",
+      "name": "Overig",
+      "devices": [
+        {
+          "deviceId": "ap-kantoor"
+        },
+        {
+          "deviceId": "ap-zolder"
+        },
+        {
+          "deviceId": "raspberrypi-ivar"
+        },
+        {
+          "deviceId": "ipcamera-voordeur"
+        },
+        {
+          "deviceId": "pc-meterkast"
+        },
+        {
+          "deviceId": "linux-lt-ivar"
+        },
+        {
+          "deviceId": "smartphone-ivar"
+        },
+        {
+          "deviceId": "smartphone-dion"
+        },
+        {
+          "deviceId": "smartphone-carla"
+        },
+        {
+          "deviceId": "syssensor"
+        },
+        {
+          "deviceId": "sys-buttons"
+        }
+      ]
+    },
+    {
+      "id": "page-temperaturen",
+      "name": "Temperaturen",
+      "devices": [
+        {
+          "deviceId": "weather"
+        },
+        {
+          "deviceId": "forecast"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "kaku-schakelaars1",
+      "name": "Lampen Woonkamer",
+      "devices": [
+        "rfswitch1",
+        "rfswitch2",
+        "rfswitch3",
+        "rfswitch5"
+      ],
+      "rules": [],
+      "variables": []
+    },
+    {
+      "id": "kaku-schakelaars2",
+      "name": "Lampen Keuken",
+      "devices": [
+        "rfswitch6",
+        "rfswitch7"
+      ],
+      "rules": [],
+      "variables": []
+    },
+    {
+      "id": "kaku-schakelaars3",
+      "name": "Alles uit",
+      "devices": [
+        "rfswitch4"
+      ],
+      "rules": [],
+      "variables": []
+    },
+    {
+      "id": "group-temperaturen",
+      "name": "Temperaturen",
+      "devices": [
+        "weather",
+        "forecast",
+        "temperatuursensor1"
+      ],
+      "rules": [],
+      "variables": []
+    },
+    {
+      "id": "group-camera",
+      "name": "camera voordeur",
+      "devices": [
+        "CameraSnapshot"
+      ],
+      "rules": [],
+      "variables": []
+    },
+    {
+      "id": "group-systeem",
+      "name": "Systeem",
+      "devices": [
+        "syssensor",
+        "sys-buttons"
+      ],
+      "rules": [
+        "system-reboot",
+        "system-shutdown",
+        "system-pimatic-restart"
+      ],
+      "variables": []
+    },
+    {
+      "id": "group-ping",
+      "name": "Ping",
+      "devices": [
+        "smartphone-ivar",
+        "smartphone-dion",
+        "smartphone-carla",
+        "pc-meterkast",
+        "linux-lt-ivar",
+        "ipcamera-voordeur",
+        "raspberrypi-ivar",
+        "ap-zolder",
+        "ap-kantoor"
+      ],
+      "rules": [],
+      "variables": []
+    }
+  ],
+  "users": [
+    {
+      "username": "####",
+      "password": "####",
+      "role": "admin"
+    },
+    {
+      "username": "####",
+      "password": "####",
+      "role": "user"
+    }
+  ],
+  "roles": [
+    {
+      "name": "admin",
+      "permissions": {
+        "pages": "write",
+        "rules": "write",
+        "variables": "write",
+        "messages": "write",
+        "events": "write",
+        "devices": "write",
+        "groups": "write",
+        "plugins": "write",
+        "updates": "write",
+        "database": "write",
+        "config": "write",
+        "controlDevices": true,
+        "restart": true
+      }
+    },
+    {
+      "name": "user",
+      "permissions": {
+        "pages": "read",
+        "rules": "none",
+        "variables": "read",
+        "messages": "none",
+        "events": "none",
+        "devices": "none",
+        "groups": "none",
+        "plugins": "none",
+        "updates": "none",
+        "controlDevices": true,
+        "restart": false
+      }
+    }
+  ],
+  "variables": []
+}
